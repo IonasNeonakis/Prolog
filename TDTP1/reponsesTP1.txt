@@ -1,0 +1,28 @@
+Exercice 1 
+
+q5.
+homme(andre). femme(andre).
+enfant(bernard,caroline).
+enfant(caroline,brigitte), femme(caroline).
+
+q6.
+enfant(caroline,X) , homme(X).
+enfant(X,bernard).
+enfant(bernard,X) , enfant(brigitte,X) , femme(X).
+
+q7.
+enfant(E,P).
+enfant(E,X), enfant(E,Y), homme(X), femme(Y).
+enfant(celestine,X), enfant(caroline,X), X=Y.
+
+Exercice 2.
+voir arbreGen.pl
+
+
+Exercice 3 suite.
+question 2.
+pere(X,dagobert). // pere
+pere(X,dagobert), soeur(Y,X). // soeur du pere
+pere(P,dagobert), cousin(C,P) , mere(S,C). // mere du cousin du pere
+
+
