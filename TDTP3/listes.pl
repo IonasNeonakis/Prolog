@@ -126,6 +126,71 @@ aplatir([H|T],L):- aplatir(H,H1), aplatir(T,T1), append(H1,T1,L).
 aplatir([H|T1], [H|T2]):- H\=[], H\=[_|_], aplatir(T1,T2).
 
 
+/*
+-------------------------------------------------------------------------------------EXERCICE 3 
+*/
+
+
+/*
+1)
+
+Ecrire un prédicat triee(+L) qui réussit si L est une liste triée dans l’ordre croissant, échoue sinon.
+Par exemple triee([4,6,8]) réussit et triee([4,2,6,8]) échoue.
+
+
+*/
+
+
+triee([]):-!.
+
+
+triee([_|[]]):-!.
+
+triee([A,B|T]):- A=<B, L=[B|T],triee(L).
+
+
+/*
+2)
+Ecrire un prédicat insert(+X,+L,-R) pour insérer un entier X dans une liste L, que l’on suppose triée, de telle façon que la liste résultat R soit triée. 
+Par exemple insert(7,[3,6,10],R) réussit avec R=[3,6,7,10].
+
+*/
+
+insert(X,[],[X]):-!.
+
+insert(X, [H1 | T], [X, H1 | T ]):- X =< H1, !.
+
+insert(X,[H|T1],[H|T2]):-insert(X,T1,T2). 
+
+
+
+
+/*
+3)
+Ecrire un prédicat tri_insert(+L,-R) pour trier une liste d’entiers L en une liste triée R, par un tri par insertion :
+— La liste vide est triée.
+— Pour trier la liste [N—L] on commence par trier L, puis on insère N dans le résultat en respectant
+l’ordre croissant des éléments.
+*/
+
+tri_insert([],_,_):-!.
+
+tri_insert([H1|T],L,R):- insert(H1,L,R), tri_insert(T,L,R).
+
+tri_insert(L1,L2):-tri_insert(L1,[],L2).
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
