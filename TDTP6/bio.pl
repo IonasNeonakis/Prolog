@@ -71,5 +71,13 @@ ashen4(L,N):- setof(A,descendant(henri4,A),L), length(L,N).
 
 /*1*/
 
-fact(N,R):- 
 
+:-dynamic(fact/2).
+
+fact(0,1):-!.
+
+fact(X,N):- Y is X-1, fact(Y,S), N is S*X, asserta(fact(X,N)).
+
+/*2*/
+
+binomial(K,N,S):- fact(N,N1), fact(K,K1), Y is N-K, fact(Y,Y1), S is (N1/(K1*Y1)),!.
