@@ -87,11 +87,11 @@ fact(X,N):- Y is X-1, fact(Y,S), N is S*X, asserta(facttab(X,N)).
 :-dynamic(bintab/3).
 
 bintab(1,N,N).
-
 bintab(0,_,1).	
-
 bintab(N,N,1).
 
 binomial(K,N,S):-bintab(K,N,S),!.
 
 binomial(K,N,S):- N1 is N-1, K1 is K-1, binomial(K1,N1,S1), binomial(K,N1,S2), S is S1+S2, asserta(bintab(K,N,S)).
+
+
