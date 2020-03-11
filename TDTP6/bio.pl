@@ -72,12 +72,26 @@ ashen4(L,N):- setof(A,descendant(henri4,A),L), length(L,N).
 /*1*/
 
 
-:-dynamic(fact/2).
+:-dynamic(facttab/2).
 
-fact(0,1):-!.
+facttab(0,1).
+facttab(1,1).
 
-fact(X,N):- Y is X-1, fact(Y,S), N is S*X, asserta(fact(X,N)).
+
+fact(X,N):-facttab(X,N),!.
+
+fact(X,N):- Y is X-1, fact(Y,S), N is S*X, asserta(facttab(X,N)).
 
 /*2*/
 
-binomial(K,N,S):- fact(N,N1), fact(K,K1), Y is N-K, fact(Y,Y1), S is (N1/(K1*Y1)),!.
+:-dynamic(bintab/3).
+
+bintab(1,N,N).
+
+bintab(0,_,1).	
+
+bintab(N,N,1).
+
+binomial(K,N,S):-bintab(K,N,S),!.
+
+binomial(K,N,S):- N1 is N-1, K1 is K-1, binomial(K1,N1,S1), binomial(K,N1,S2), S is S1+S2, asserta(bintab(K,N,S)).
